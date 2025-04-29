@@ -1,0 +1,57 @@
+stdio
+stdlib
+unistd
+sys/types.h 
+sys/wait.h 
+
+fork()
+vfork()
+wait(Null) 
+pid_t 
+getpid()
+exit(1)
+exit(EXIT_FAILURE)
+perror("messga")
+
+fgets(variable , size , stdin)
+
+execl() is a system call used to replace the current process image with a new program.
+execlp() is similar to execl(), but it searches for the executable in the directories 
+listed in the PATH environment variable
+execv() is another variant of the exec family. Instead of passing arguments as a variable-length list,
+ it takes them as an array of strings.
+execvp() is similar to execv(), but it searches for the executable in the PATH environment variable.
+
+pause()
+sleep(no)
+wait(&status)
+wait(WIFEXITED)
+wait(WEXITSTATUS)
+
+ pid_t target_pid;
+kill(target_pid, SIGKILL)  // Send SIGKILL signal to the target process
+
+kill(pid , SIGUSR1)
+signal(user,function)
+signal(SIGUSR1,signal_handler)
+signal(SIGALRM,alarm_handler)
+
+alarm(secs)
+
+
+
+
+
+# Clear dmesg
+sudo dmesg -C
+
+# Clear system journal
+sudo journalctl --rotate
+sudo journalctl --vacuum-time=1s
+
+# Clear syslog and kern.log
+sudo truncate -s 0 /var/log/syslog
+sudo truncate -s 0 /var/log/kern.log
+
+# (Optional) Restart udev (won't fully erase history, but resets)
+sudo systemctl restart systemd-udevd
